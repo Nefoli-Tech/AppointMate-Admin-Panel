@@ -1,24 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import "./style.css";
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
+import { Typography } from "@mui/material";
 
-
-  const customToastStyle = {
-    fontSize: '14px',
-    padding: '8px 12px',
-  };
- 
-  
+const customToastStyle = {
+  fontSize: "14px",
+  padding: "8px 12px",
+};
 
 const Login = () => {
-  const navigate=useNavigate();
-  const [email,setEmail]=useState("");
-  const [password,setPassword]=useState("");
-  const [isLoading,setIsLoading]=useState(false);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value.toLowerCase());
@@ -27,73 +25,75 @@ const Login = () => {
   function handleLoading(isLoading) {
     setIsLoading(isLoading);
   }
-  async  function login() {
+  async function login() {
     handleLoading(true);
-     try{
-      const response = await axios.post('https://appointmate.onrender.com/users/login', { email:email, password:password});
+    try {
+      const response = await axios.post(
+        "https://appointmate.onrender.com/users/login",
+        { email: email, password: password }
+      );
       handleLoading(false);
-      if(response.data.role==="Admin")
-      {
-        localStorage.setItem("userInfo",response.data);
+      if (response.data.role === "Admin") {
+        localStorage.setItem("userInfo", response.data);
         navigate("/dashboard", { replace: true });
-      }
-      else{
-        toast.error("Authentication failed",{
+      } else {
+        toast.error("Authentication failed", {
           style: customToastStyle,
-          autoClose: 2000, 
-          bodyStyle: { fontSize: '14px' },
+          autoClose: 2000,
+          bodyStyle: { fontSize: "14px" },
           closeButton: false,
-          
-        })
-      }  
-     }
-     catch(e)
-     
-     {
+        });
+      }
+    } catch (e) {
       handleLoading(false);
-      try{
-      toast.error(e.response.data.error,{
-        style: customToastStyle,
-        autoClose: 2000, 
-        bodyStyle: { fontSize: '14px' },
-        closeButton: false,
-        
-      })
-      
-     }
-     catch(e)
-     {
-      toast.error("Something went wrong",{
-        style: customToastStyle,
-        autoClose: 2000, 
-        bodyStyle: { fontSize: '14px' },
-        closeButton: false,
-      })
-
-     }
-     }
+      try {
+        toast.error(e.response.data.error, {
+          style: customToastStyle,
+          autoClose: 2000,
+          bodyStyle: { fontSize: "14px" },
+          closeButton: false,
+        });
+      } catch (e) {
+        toast.error("Something went wrong", {
+          style: customToastStyle,
+          autoClose: 2000,
+          bodyStyle: { fontSize: "14px" },
+          closeButton: false,
+        });
+      }
+    }
   }
   return (
     <>
       <div className="wrapper">
-
-        <div className='st'>
-        <img src="/image/light_logo.png" alt="Logo"  style={{ height: '120px', width: '200px'}} />
+        <div className="st">
+          <img
+            src="/image/light_logo.png"
+            alt="Logo"
+            style={{ height: "120px", width: "200px" }}
+          />
         </div>
         <h1>Welcome back Admin</h1>
         <h2>Sign in to continue with Appointmate</h2>
         <form action="#">
-            <input type="text" onChange={(e)=>handleEmailChange(e)} placeholder='Email'></input>
-            <input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder='Password'></input>
+          <input
+            type="text"
+            onChange={(e) => handleEmailChange(e)}
+            placeholder="Email"
+          ></input>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          ></input>
         </form>
-        <button onClick={
-          !isLoading?login:null
-        } >{isLoading?"Loading...":"Login"}</button>
+        <button onClick={!isLoading ? login : null}>
+          {isLoading ? "Loading..." : "Login"}
+        </button>
         <ToastContainer className="my-custom-toast-container" />
-
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

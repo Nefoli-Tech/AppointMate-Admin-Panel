@@ -18,12 +18,17 @@
     display: 'inline-flex',
 
 }
+
+.mainbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
   body{
     background-color: #dfe9f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+   
   }
 
   .wrapper{

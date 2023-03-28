@@ -4,13 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
-import { duration, Typography } from "@mui/material";
-
-const customToastStyle = {
-  fontSize: "14px",
-  padding: "8px 12px",
-};
-
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -49,6 +42,7 @@ const Login = () => {
   }
   return (
     <>
+      <div className="mainbox">
       <div className="wrapper">
         <div className="st">
           <img
@@ -77,6 +71,7 @@ const Login = () => {
         <div>
           <Toaster position="top-right" />
         </div>
+      </div>
       </div>
     </>
   );

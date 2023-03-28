@@ -1,22 +1,11 @@
-import React from "react";
-import AppHeader from "../AppHeader/AppHeader";
-import SideMenu from "../SideMenu/SideMenu";
-import PageContent from "../PageContent/PageContent";
-import AppFooter from "../Appfooter/AppFooter";
-
-
+import React from 'react'
 
 const Dashboard = () => {
   return (
-    <>
-      <div className="App">
-        <AppHeader></AppHeader>
-        <SideMenu></SideMenu>
-        <PageContent></PageContent>
-        <AppFooter></AppFooter>
-      </div>
-    </>
-  );
-};
+    <div>
+      <h1>Dashboard ongoing</h1>
+    </div>
+  )
+}
 
-export default Dashboard;
+export default Dashboard

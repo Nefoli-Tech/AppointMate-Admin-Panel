@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import "./style.css";
+import "./Style.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import React, { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -43,35 +43,35 @@ const Login = () => {
   return (
     <>
       <div className="mainbox">
-      <div className="wrapper">
-        <div className="st">
-          <img
-            src="/image/light_logo.png"
-            alt="Logo"
-            style={{ height: "120px", width: "200px" }}
-          />
+        <div className="wrapper">
+          <div className="st">
+            <img
+              src="/image/light_logo.png"
+              alt="Logo"
+              style={{ height: "120px", width: "200px" }}
+            />
+          </div>
+          <h1>Welcome back Admin</h1>
+          <h2>Sign in to continue with Appointmate</h2>
+          <form action="#">
+            <input
+              type="text"
+              onChange={(e) => handleEmailChange(e)}
+              placeholder="Email"
+            ></input>
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            ></input>
+          </form>
+          <button onClick={!isLoading ? login : null}>
+            {isLoading ? "Loading..." : "Login"}
+          </button>
+          <div>
+            <Toaster position="top-right" />
+          </div>
         </div>
-        <h1>Welcome back Admin</h1>
-        <h2>Sign in to continue with Appointmate</h2>
-        <form action="#">
-          <input
-            type="text"
-            onChange={(e) => handleEmailChange(e)}
-            placeholder="Email"
-          ></input>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          ></input>
-        </form>
-        <button onClick={!isLoading ? login : null}>
-          {isLoading ? "Loading..." : "Login"}
-        </button>
-        <div>
-          <Toaster position="top-right" />
-        </div>
-      </div>
       </div>
     </>
   );

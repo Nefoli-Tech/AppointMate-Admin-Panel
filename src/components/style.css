@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:ital,wght@0,800;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
-  *{
+  /* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,26 +12,30 @@
     justify-content: center;
     align-items: center;
     
-}
+} */
 
-.my-custom-toast-container{
+/* .my-custom-toast-container{
     display: 'inline-flex',
 
-}
+} */
 
-.mainbox{
+/* .mainbox{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 
-}
-  body{
+} */
+
+
+
+
+  /* body{
     background-color: #dfe9f5;
    
-  }
+  } */
 
-  .wrapper{
+  /* .wrapper{
     padding: 2rem 1rem;
     max-width: 50px auto;
     background-color: #fff;
@@ -83,4 +87,4 @@
   }
   input:focus{
     border: 1px solid rgb(192, 192, 192);
-  }
+  } */

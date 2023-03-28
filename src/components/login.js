@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
-import { Typography } from "@mui/material";
+import { duration, Typography } from "@mui/material";
 
 const customToastStyle = {
   fontSize: "14px",
@@ -37,29 +36,14 @@ const Login = () => {
         localStorage.setItem("userInfo", response.data);
         navigate("/dashboard", { replace: true });
       } else {
-        toast.error("Authentication failed", {
-          style: customToastStyle,
-          autoClose: 2000,
-          bodyStyle: { fontSize: "14px" },
-          closeButton: false,
-        });
+        toast.error("Authentication Error");
       }
     } catch (e) {
       handleLoading(false);
       try {
-        toast.error(e.response.data.error, {
-          style: customToastStyle,
-          autoClose: 2000,
-          bodyStyle: { fontSize: "14px" },
-          closeButton: false,
-        });
+        toast.error(e.response.data.error);
       } catch (e) {
-        toast.error("Something went wrong", {
-          style: customToastStyle,
-          autoClose: 2000,
-          bodyStyle: { fontSize: "14px" },
-          closeButton: false,
-        });
+        toast.error("Something went wrong");
       }
     }
   }
@@ -90,7 +74,9 @@ const Login = () => {
         <button onClick={!isLoading ? login : null}>
           {isLoading ? "Loading..." : "Login"}
         </button>
-        <ToastContainer className="my-custom-toast-container" />
+        <div>
+          <Toaster position="top-right" />
+        </div>
       </div>
     </>
   );

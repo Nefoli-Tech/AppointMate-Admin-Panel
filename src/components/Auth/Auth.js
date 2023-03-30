@@ -94,7 +94,10 @@ const LoginForm = () => {
   }
   async function login() {
     handleLoading(true);
+    //navigate("/dashboard", { replace: true });
+    //here
     try {
+      
       const response = await axios.post(
         "https://appointmate.onrender.com/users/login",
         { email: email, password: password }
@@ -104,6 +107,7 @@ const LoginForm = () => {
         localStorage.setItem("userInfo", response.data);
         navigate("/dashboard", { replace: true });
       } else {
+        
         toast.error("Authentication Error");
       }
     } catch (e) {
@@ -115,6 +119,7 @@ const LoginForm = () => {
       }
     }
   }
+
   return (
     <Box my={8}>
       <form>

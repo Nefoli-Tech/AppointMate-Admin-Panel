@@ -53,7 +53,7 @@ const AdminPanel = () => {
           </div>
           <div className="box">
             <h3>Appointments History with Doctor</h3>
-            <p className="count">50</p>
+            <p className="count">active</p>
           </div>
           <div className="box">
             <h3>CRUD Patient</h3>

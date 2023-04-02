@@ -52,7 +52,7 @@ const AdminPanel = () => {
             <p className="count">10</p>
           </div>
           <div className="box">
-            <h3>Patient</h3>
+            <h3>Patients</h3>
             <p className="count">50</p>
           </div>
           <div className="box">

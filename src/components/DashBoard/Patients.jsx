@@ -48,15 +48,15 @@ const AdminPanel = () => {
         <h2>Welcome to Patients</h2>
         <div className="boxes">
           <div className="box">
-            <h3>Number of patients</h3>
+            <h2>Total patients</h2>
             <p className="count">10</p>
           </div>
           <div className="box">
-            <h3>Appointments History with Doctor</h3>
+            <h2>Appointments History with Doctor</h2>
             <p className="count">active</p>
           </div>
           <div className="box">
-            <h3>CRUD Patient</h3>
+            <h2>CRUD Patients</h2>
             <p className="count">100</p>
           </div>
         </div>

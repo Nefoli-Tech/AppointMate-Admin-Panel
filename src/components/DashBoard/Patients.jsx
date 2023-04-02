@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './Style.css';
+import './patients.css';
 
 const AdminPanel = () => {
   return (
@@ -21,8 +21,8 @@ const AdminPanel = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/Patients" activeClassName="active">
-            Patients
+            <NavLink to="/patients" activeClassName="active">
+              Patients
             </NavLink>
           </li>
           <li>
@@ -45,18 +45,18 @@ const AdminPanel = () => {
 
       {/* Content */}
       <div className="content">
-        <h2>Welcome to Dashboard</h2>
+        <h2>Welcome to Patients</h2>
         <div className="boxes">
           <div className="box">
-            <h3>Doctor</h3>
+            <h3>Number of patients</h3>
             <p className="count">10</p>
           </div>
           <div className="box">
-            <h3>Patient</h3>
+            <h3>Appointments History with Doctor</h3>
             <p className="count">50</p>
           </div>
           <div className="box">
-            <h3>Appointment</h3>
+            <h3>CRUD Patient</h3>
             <p className="count">100</p>
           </div>
         </div>

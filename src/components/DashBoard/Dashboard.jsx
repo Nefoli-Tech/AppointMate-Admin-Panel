@@ -17,7 +17,7 @@ const AdminPanel = () => {
         <ul className="sidebar__nav">
           <li>
             <NavLink to="/Dashboard" activeClassName="active">
-              Appointments
+              Dashboard
             </NavLink>
           </li>
           <li>
@@ -26,18 +26,18 @@ const AdminPanel = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/Doctors" activeClassName="active">
+              Doctors
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/Settings" activeClassName="active">
+              Settings
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/Support" activeClassName="active">
               Support
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/Setting" activeClassName="active">
-              Setting
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/doctors" activeClassName="active">
-              Doctors
             </NavLink>
           </li>
         </ul>
@@ -52,7 +52,7 @@ const AdminPanel = () => {
             <p className="count">10</p>
           </div>
           <div className="box">
-            <h3>Patient</h3>
+            <h3>Patients</h3>
             <p className="count">50</p>
           </div>
           <div className="box">

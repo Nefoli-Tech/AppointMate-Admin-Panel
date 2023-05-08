@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './patients.css';
 
+
 const AdminPanel = () => {
+  const [patients, setPatients] = useState([
+    { id: 1, name: 'John Doe' },
+  
+  ]);
+
+  const appointments = [
+    { patientId: 1, doctor: 'Dr. Smith', date: '05/10/2023' },
+    
+  ];
+
+  const handleDeletePatient = (id) => {
+    // Delete patient with the specified ID
+    const newPatients = patients.filter(patient => patient.id !== id);
+    setPatients(newPatients);
+  };
+
+  const handleCreatePatient = (name) => {
+    // Create a new patient with the specified name
+    const newPatient = { id: patients.length + 1, name: name };
+    const newPatients = [...patients, newPatient];
+    setPatients(newPatients);
+  };
+
   return (
     <div>
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar__logo">
-
-          Admin Panel</div>
+          Admin Panel
+        </div>
       </nav>
 
       {/* Sidebar */}
@@ -17,7 +41,7 @@ const AdminPanel = () => {
         <ul className="sidebar__nav">
           <li>
             <NavLink to="/Dashboard" activeClassName="active">
-             Dashboard
+              Dashboard
             </NavLink>
           </li>
           <li>
@@ -26,7 +50,6 @@ const AdminPanel = () => {
             </NavLink>
           </li>
           <li>
-            
             <NavLink to="/Doctors" activeClassName="active">
               Doctors
             </NavLink>
@@ -37,8 +60,8 @@ const AdminPanel = () => {
             </NavLink>
           </li>
           <li>
-          <NavLink to="/Support" activeClassName="active">
-          Support
+            <NavLink to="/Support" activeClassName="active">
+              Support
             </NavLink>
           </li>
         </ul>
@@ -50,22 +73,50 @@ const AdminPanel = () => {
         <div className="boxes">
           <div className="box">
             <h2>Total patients</h2>
-            <p className="count">10</p>
+            <p className="count">{patients.length}</p>
+          </div>
+          <div className="box2">
+            <h2>Appointments History</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Doctor</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {appointments.map((appointment, index) => (
+                  <tr key={index}>
+                    <td>{patients.find(patient => patient.id === appointment.patientId).name}</td>
+                    <td>{appointment.doctor}</td>
+                    <td>{appointment.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
           <div className="box">
-            <h2>Appointments History with Doctor</h2>
-            <p className="count">active</p>
-          </div>
-          <div className="box">
-            <h2>CRUD Patients</h2>
-            <p className="count">100</p>
+            <h2>Patients Name</h2>
+            <form onSubmit={(e) => { e.preventDefault(); handleCreatePatient(e.target.elements.name.value); }}>
+              {/* <input type="text" name="name" placeholder="Enter name" />
+              <button type="submit">Add</button> */}
+            </form>
+            <ul>
+              {patients.map((patient) => (
+                <li key={patient.id}>
+
+                  {patient.name}
+                  <button onClick={() => handleDeletePatient(patient.id)}>Delete</button>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 
-
 export default AdminPanel;
-

@@ -1,91 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Table, Input, Button } from "antd";
 import { NavLink } from 'react-router-dom';
 import './doctor.css';
-const DoctorForm = ({ addDoctor }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [specialization, setSpecialization] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newDoctor = { name, email, phone, specialization };
-    addDoctor(newDoctor);
-    setName('');
-    setEmail('');
-    setPhone('');
-    setSpecialization('');
+const { Column } = Table;
+
+const DoctorPanel = () => {
+  const [doctors, setDoctors] = useState([]);
+  const [newDoctor, setNewDoctor] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    description: "",
+    degree: "",
+    nmcNumber: "",
+    category: "",
+    experience: "",
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewDoctor({ ...newDoctor, [name]: value });
   };
 
-  return (
-    <tr>
-      <td>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-      </td>
-      <td>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-      </td>
-      <td>
-        <input
-          type="text"
-          placeholder="Phone"
-          value={phone}
-          onChange={(event) => setPhone(event.target.value)}
-        />
-      </td>
-      <td>
-        <input
-          type="text"
-          placeholder="Specialization"
-          value={specialization}
-          onChange={(event) => setSpecialization(event.target.value)}
-        />
-      </td>
-      <td>
-        <button type="submit" onClick={handleSubmit}>
-          Add
-        </button>
-      </td>
-    </tr>
-  );
-};
-
-const AdminPanel = () => {
-  const [doctors, setDoctors] = useState([
-    { id: 1, name: 'John Doe', email: 'johndoe@example.com', phone: '555-1234', specialization: 'Cardiology' },
-    { id: 2, name: 'Jane Doe', email: 'janedoe@example.com', phone: '555-5678', specialization: 'Pediatrics' },
-    // Add more doctors here
-  ]);
-
-  const addDoctor = (doctor) => {
-    setDoctors([...doctors, doctor]);
-  };
-
-  const deleteDoctor = (id) => {
-    setDoctors(doctors.filter((doctor) => doctor.id !== id));
-  };
-
-  const updateDoctor = (updatedDoctor) => {
-    setDoctors(
-      doctors.map((doctor) => (doctor.id === updatedDoctor.id ? updatedDoctor : doctor))
-    );
+  const handleAddDoctor = () => {
+    setDoctors([...doctors, newDoctor]);
+    setNewDoctor({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      phoneNumber: "",
+      description: "",
+      degree: "",
+      nmcNumber: "",
+      category: "",
+      experience: "",
+    });
   };
 
   return (
     <div>
       {/* Navbar */}
       <nav className="navbar">
-        <div className="navbar__logo">Admin Panel</div>
+        <div className="navbar__logo">
+          Admin Panel
+        </div>
       </nav>
 
       {/* Sidebar */}
@@ -113,104 +75,103 @@ const AdminPanel = () => {
           </li>
           <li>
             <NavLink to="/Support" activeClassName="active">
-            Support
+              Support
             </NavLink>
           </li>
         </ul>
       </div>
 
-      {/* Content */}
-      <div className="content">
-        <h1>Doctors</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Specialization</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {doctors.map((doctor) => (
-              <DoctorRow
-                key={doctor.id}
-                doctor={doctor}
-                deleteDoctor={deleteDoctor}
-                updateDoctor={updateDoctor}
-              />
-            ))}
-            <DoctorForm addDoctor={addDoctor} />
-          </tbody>
-        </table>
+    <div className="main-content">
+      <div style={{ marginBottom: "16px" }}>
+        <Input
+          placeholder="Enter First Name"
+          name="firstName"
+          value={newDoctor.firstName}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "10px" }}
+        />
+        <Input
+          placeholder="Enter Last Name"
+          name="lastName"
+          value={newDoctor.lastName}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter Email"
+          name="email"
+          value={newDoctor.email}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter Password"
+          name="password"
+          type="password"
+          value={newDoctor.password}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter Phone Number"
+          name="phoneNumber"
+          value={newDoctor.phoneNumber}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter Description"
+          name="description"
+          value={newDoctor.description}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter Degree"
+          name="degree"
+          value={newDoctor.degree}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter NMC Number"
+          name="nmcNumber"
+          value={newDoctor.nmcNumber}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter Category"
+          name="category"
+          value={newDoctor.category}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Input
+          placeholder="Enter Experience"
+          name="experience"
+          value={newDoctor.experience}
+          onChange={handleInputChange}
+          style={{ marginRight: "8px", marginBottom: "8px" }}
+        />
+        <Button type="primary" onClick={handleAddDoctor}>
+          Add Doctor
+        </Button>
       </div>
-    </div>
-  );
+      <Table dataSource={doctors}>
+      <Column title="First Name" dataIndex="firstName" key="firstName" />
+    <Column title="Last Name" dataIndex="lastName" key="lastName" />
+    <Column title="Email" dataIndex="email" key="email" />
+    <Column title="Phone Number" dataIndex="phoneNumber" key="phoneNumber" />
+    <Column title="Description" dataIndex="description" key="description" />
+    <Column title="Degree" dataIndex="degree" key="degree" />
+    <Column title="NMC Number" dataIndex="nmcNumber" key="nmcNumber" />
+    <Column title="Category" dataIndex="category" key="category" />
+    <Column title="Experience" dataIndex="experience" key="experience" />
+  </Table>
+</div>
+</div>
+);
 };
 
-const DoctorRow = ({ doctor, deleteDoctor, updateDoctor }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [updatedDoctor, setUpdatedDoctor] = useState(doctor);
-  
-  const handleDelete = () => {
-  deleteDoctor(doctor.id);
-  };
-  
-  const handleEdit = () => {
-  setIsEditing(true);
-  };
-  
-  const handleUpdate = () => {
-  updateDoctor(updatedDoctor);
-  setIsEditing(false);
-  };
-  
-  const handleCancel = () => {
-  setIsEditing(false);
-  setUpdatedDoctor(doctor);
-  };
-  
-  const handleInputChange = (event) => {
-  const { name, value } = event.target;
-  setUpdatedDoctor({ ...updatedDoctor, [name]: value });
-  };
-  
-  if (isEditing) {
-  return (
-  <tr>
-  <td>
-  <input type="text" name="name" value={updatedDoctor.name} onChange={handleInputChange} />
-  </td>
-  <td>
-  <input type="email" name="email" value={updatedDoctor.email} onChange={handleInputChange} />
-  </td>
-  <td>
-  <input type="tel" name="phone" value={updatedDoctor.phone} onChange={handleInputChange} />
-  </td>
-  <td>
-  <input type="text" name="specialization" value={updatedDoctor.specialization} onChange={handleInputChange} />
-  </td>
-  <td>
-  <button onClick={handleUpdate}>Save</button>
-  <button onClick={handleCancel}>Cancel</button>
-  </td>
-  </tr>
-  );
-  }
-  
-  return (
-  <tr>
-  <td>{doctor.name}</td>
-  <td>{doctor.email}</td>
-  <td>{doctor.phone}</td>
-  <td>{doctor.specialization}</td>
-  <td>
-  <button onClick={handleEdit}>Edit</button>
-  <button onClick={handleDelete}>Delete</button>
-  </td>
-  </tr>
-  );
-  };
-  
-  export default AdminPanel;
+export default DoctorPanel;

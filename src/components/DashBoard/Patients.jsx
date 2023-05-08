@@ -75,8 +75,8 @@ const AdminPanel = () => {
             <h2>Total patients</h2>
             <p className="count">{patients.length}</p>
           </div>
-          <div className="box">
-            <h2>Appointments History with Doctor</h2>
+          <div className="box2">
+            <h2>Appointments History</h2>
             <table>
               <thead>
                 <tr>
@@ -97,10 +97,10 @@ const AdminPanel = () => {
             </table>
           </div>
           <div className="box">
-            <h2>CRUD Patients</h2>
+            <h2>Patients Name</h2>
             <form onSubmit={(e) => { e.preventDefault(); handleCreatePatient(e.target.elements.name.value); }}>
-              <input type="text" name="name" placeholder="Enter name" />
-              <button type="submit">Add</button>
+              {/* <input type="text" name="name" placeholder="Enter name" />
+              <button type="submit">Add</button> */}
             </form>
             <ul>
               {patients.map((patient) => (

@@ -71,10 +71,6 @@ const AdminPanel = () => {
       <div className="content">
         <h2>Welcome to Patients</h2>
         <div className="boxes">
-          <div className="box">
-            <h2>Total patients</h2>
-            <p className="count">{patients.length}</p>
-          </div>
           <div className="box2">
             <h2>Appointments History</h2>
             <table>

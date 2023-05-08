@@ -57,7 +57,7 @@
 
 /* Content */
 .content {
-  margin-top: 80px;
+  margin-top: 20px;
   margin-left: 220px;
   padding: 40px;
 }
@@ -101,10 +101,10 @@ tbody tr:nth-child(even) {
   background-color: #ffffff;
   color: black;
   padding: 20px;
-  margin: 20px;
+  margin: 50px;
   border-radius: 10px;
   flex: 1;
-  min-width: 200px;
+  min-width: 100px;
 }
 
 .box h2 {

@@ -69,3 +69,22 @@
   font-weight: bold;
   background-color: #f2f2f2;
 }
+
+
+/* Define a new class for the button */
+.change-status-button {
+  background-color: #007bff; /* Blue background color */
+  color: white; /* White text color */
+  border: none; /* Remove button border */
+  padding: 5px 10px; /* Add padding to the button */
+  border-radius: 4px; /* Add rounded corners */
+}
+
+/* Change the background color of the button when it's clicked */
+.change-status-button:focus,
+.change-status-button:active {
+  background-color: #0062cc;
+}
+
+
+

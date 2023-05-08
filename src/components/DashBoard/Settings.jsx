@@ -6,8 +6,6 @@ const Setting = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [avatar, setAvatar] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,8 +14,7 @@ const Setting = () => {
       currentPassword,
       newPassword,
       confirmPassword,
-      fullName,
-      avatar,
+     
     });
   };
 
@@ -92,24 +89,8 @@ const Setting = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="full-name">Full Name:</label>
-            <input
-              type="text"
-              id="full-name"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="avatar">Avatar:</label>
-            <input
-              type="file"
-              id="avatar"
-              accept="image/*"
-              onChange={(e) => setAvatar(e.target.files[0])}
-            />
-          </div>
+         
+         
           <button type="submit">Save Changes</button>
         </form>
       </div>

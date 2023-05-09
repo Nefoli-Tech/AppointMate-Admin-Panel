@@ -63,6 +63,7 @@ const DoctorPanel = () => {
           "lastName": newDoctor.lastName,
           "email": newDoctor.email,
           "password": newDoctor.password,
+          "avatarUrl":"https://i.stack.imgur.com/l60Hf.png",
           "phoneNumber": newDoctor.phoneNumber,
           "description": newDoctor.description,
           "experience": newDoctor.experience,

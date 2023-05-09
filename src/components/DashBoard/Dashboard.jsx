@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 import './Style.css';
 
-
 const AdminPanel = () => {
+
+  const accessToken = localStorage.getItem('accessToken');
+  const [counts, setCounts] = useState({});
+
+  useEffect(() => {
+    axios.get('https://appointmate.onrender.com/admin/total', {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    .then(response => {
+      setCounts(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }, [accessToken]);
+  
   return (
     <div>
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar__logo">
-
-          Admin Panel</div>
+          Admin Panel
+        </div>
       </nav>
 
       {/* Sidebar */}
@@ -49,16 +68,16 @@ const AdminPanel = () => {
         <h2>Welcome to Dashboard</h2>
         <div className="boxes">
           <div className="box">
-            <h3>Doctor</h3>
-            <p className="count">10</p>
+            <h3>Doctors</h3>
+            <p className="count">{counts.doctors || 0}</p>
           </div>
           <div className="box">
             <h3>Patients</h3>
-            <p className="count">50</p>
+            <p className="count">{counts.patients || 0}</p>
           </div>
           <div className="box">
-            <h3>Appointment</h3>
-            <p className="count">100</p>
+            <h3>Appointments</h3>
+            <p className="count">{counts.appointments || 0}</p>
           </div>
         </div>
       </div>
@@ -66,6 +85,4 @@ const AdminPanel = () => {
   );
 };
 
-
 export default AdminPanel;
-

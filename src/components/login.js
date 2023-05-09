@@ -26,7 +26,6 @@ const Login = () => {
       );
       handleLoading(false);
       if (response.data.role === "Admin") {
-        localStorage.setItem("userInfo", response.data);
         navigate("/dashboard", { replace: true });
       } else {
         toast.error("Authentication Error");

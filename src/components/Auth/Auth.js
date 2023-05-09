@@ -97,17 +97,16 @@ const LoginForm = () => {
     //navigate("/dashboard", { replace: true });
     //here
     try {
-      
       const response = await axios.post(
         "https://appointmate.onrender.com/users/login",
         { email: email, password: password }
       );
       handleLoading(false);
       if (response.data.role === "Admin") {
-        localStorage.setItem("userInfo", response.data);
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("userInfo", JSON.stringify(response.data));
         navigate("/dashboard", { replace: true });
       } else {
-        
         toast.error("Authentication Error");
       }
     } catch (e) {

@@ -1,12 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Table, Input, Button } from "antd";
 import { NavLink } from 'react-router-dom';
+import { Spin } from 'antd';
+import toast from "react-hot-toast";
+import axios from "axios";
 import './doctor.css';
 
 const { Column } = Table;
 
 const DoctorPanel = () => {
+
+  const accessToken = localStorage.getItem('accessToken');
   const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    handleLoading(true);
+    axios.get('https://appointmate.onrender.com/doctors', {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    .then(response => {
+      handleLoading(false);
+      setDoctors(response.data.doctors);
+    })
+    .catch(error => {
+      handleLoading(false);
+      console.log(error);
+    })
+  }, [accessToken]);
+
+
+
+  const [loading, handleLoading] = useState(false);
   const [newDoctor, setNewDoctor] = useState({
     firstName: "",
     lastName: "",
@@ -25,8 +52,47 @@ const DoctorPanel = () => {
     setNewDoctor({ ...newDoctor, [name]: value });
   };
 
-  const handleAddDoctor = () => {
+  const handleAddDoctor = async ()  => {
     setDoctors([...doctors, newDoctor]);
+    handleLoading(true);
+    try {
+      const response = await axios.post(
+        "https://appointmate.onrender.com/doctor",
+        {
+          "firstName": newDoctor.firstName,
+          "lastName": newDoctor.lastName,
+          "email": newDoctor.email,
+          "password": newDoctor.password,
+          "phoneNumber": newDoctor.phoneNumber,
+          "description": newDoctor.description,
+          "experience": newDoctor.experience,
+          "degree": newDoctor.degree,
+          "nmcNumber":  newDoctor.nmcNumber,
+          "category":[newDoctor.category],
+          "avgRating": 0
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+      );
+      handleLoading(false);
+      console.log(response.data);
+      if (response.status === 200) {
+        toast.success("Doctor Added Successfully");
+      } else {
+        toast.error("Authentication Error");
+      }
+    } catch (e) {
+      handleLoading(false);
+      try {
+        toast.error(e.response.data.error);
+      } catch (e) {
+        toast.error("Something went wrong");
+      }
+  }
     setNewDoctor({
       firstName: "",
       lastName: "",
@@ -42,6 +108,10 @@ const DoctorPanel = () => {
   };
 
   return (
+    
+    loading?  <div className="loading">
+    <Spin size="large" />
+  </div> :
     <div>
       {/* Navbar */}
       <nav className="navbar">
